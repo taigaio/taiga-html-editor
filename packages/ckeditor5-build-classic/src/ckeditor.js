@@ -16,7 +16,6 @@ import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '@ckeditor/ckeditor5-image/src/image';
-import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
@@ -29,6 +28,21 @@ import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefrom
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
+
+import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
+import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
+import Mention from '@ckeditor/ckeditor5-mention/src/mention';
+import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat';
+import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
+import TodoList from '@ckeditor/ckeditor5-list/src/todolist';
+import ImageInsert from '@ckeditor/ckeditor5-image/src/imageinsert';
+import LinkImage from '@ckeditor/ckeditor5-link/src/linkimage';
+import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
+
+import MentionCustomization from '../plugins/mention-customization';
+import AttachFile from '../plugins/attach-file';
+
+// import '../theme/styles.css'
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -44,7 +58,6 @@ ClassicEditor.builtinPlugins = [
 	EasyImage,
 	Heading,
 	Image,
-	ImageCaption,
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload,
@@ -56,45 +69,57 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TextTransformation,
+	Strikethrough,
+	Code,
+	CodeBlock,
+	Mention,
+	MentionCustomization,
+	RemoveFormat,
+	AttachFile,
+	TodoList,
+	HorizontalLine,
+	ImageInsert,
+	LinkImage,
 ];
 
 // Editor configuration.
 ClassicEditor.defaultConfig = {
+	alignment: {
+		options: [ 'left', 'right' ]
+	},
 	toolbar: {
 		items: [
 			'heading',
 			'|',
 			'bold',
 			'italic',
+			'strikethrough',
 			'link',
 			'bulletedList',
 			'numberedList',
 			'|',
-			'indent',
-			'outdent',
-			'|',
-			'imageUpload',
+			'imageInsert',
 			'blockQuote',
 			'insertTable',
-			'mediaEmbed',
+			'codeBlock',
+			'removeFormat',
+			'horizontalLine',
 			'undo',
 			'redo'
 		]
 	},
 	image: {
 		toolbar: [
-			'imageStyle:full',
-			'imageStyle:side',
+			'imageTextAlternative',
 			'|',
-			'imageTextAlternative'
+			'linkImage'
 		]
 	},
 	table: {
 		contentToolbar: [
 			'tableColumn',
-			'tableRow',
-			'mergeTableCells'
+			'tableRow'
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
